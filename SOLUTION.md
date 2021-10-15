@@ -1,33 +1,41 @@
-# backend-exercise-template
-
-Template exercise to be copied and distributed to candidates. Any update and change should be committed here.
-
 # Choco Backend Interview Exercise
-
-## Process
-
-1. This repo is your own, you can use it to work and commit your solution here.
-2. Solve the exercise within a timeframe of 1 week. It normally takes around 3-4 hours to complete.
-3. When you are ready, submit a **Pull Request** and we will review and leave comments. Please reply to the comments where appropriate, we will review your answers but will not reply again.
-4. We review your solution within 2 days, provide feedback for you and schedule a call to discuss as a next step.
-5. Demo your solution to future colleagues (product managers and engineers) on the call.
-
-## Skills we're looking for
-
-- Structured problem solving.
-- Communication: explain your rationale, trade-offs and limitations of the system.
-- Systematic approach to navigate the ambiguity of the problem.
-- Code organization and quality.
-
-## How we will evaluate your solution
-
-1. Correctness: 50%
-2. Clean code: 35%
-3. Performance: 15%
 
 ## The epic
 
 Design a service that given a string with line breaks ("\n") and formatting parameters, returns a string formatted with basic markdown syntax.
+
+## Requirements
+
+### Functional Requirements
+
+The service should be able to:
+
+- Limit text to a specified line width.
+- Align text to left, right and center within the specified line width.
+- Set single or double line spacing.
+- Given a list of words, turn them bold using markdown syntax. (ie. all **Choco** words in text should be made bold)
+- Given a list of words, turn them italic using markdown syntax. (ie. all _food_ words in text should be made italic)
+- Given a list of words and their substitutions, replace all occurrences of the specified words with their substitutions. (ie. replace every Choco with CHOCO and so on)
+- Given a list of words, add a random Chuck Norris food fact after the paragraph where such words are found. (possible source https://api.chucknorris.io/)
+
+### Contraints
+
+- Use NodeJS, with TypeScript to code the service.
+- Include unit tests
+
+## Stories
+
+From the functional requirements, Roger has indenfied three major topics:
+
+1. Parameter processing
+2. Searching and replaceing words
+3. Creating a formatted output
+
+### Story # 1
+
+To achieve optimium quality, users want to underline and bold words simultaneously.
+
+Solution: Create a Class for creating a structured set of parameters from the original arguments.
 
 Example input:
 
