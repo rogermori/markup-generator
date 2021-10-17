@@ -1,0 +1,30 @@
+{
+  "name": "choco-backend-exercise",
+  "version": "1.0.0",
+  "description": "Choco backend exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "testwatch": "jest --watch",
+    "build": "tsc",
+    "prod": "node dist/index",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "keywords": [],
+  "author": "Roger Mori",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.9.6",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.2.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
