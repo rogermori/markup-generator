@@ -28,11 +28,23 @@ The service should be able to:
 From the functional requirements, Roger has indenfied three major topics:
 
 1. Parameter processing
-2. Searching and replaceing words
+2. Searching and replacing words
 3. Creating a formatted output
 
 ### Story # 1
 
-To achieve optimium quality, users want to underline and bold words simultaneously.
+To achieve optimium quality, users want to replace, underline and bold words simultaneously.
 
 Solution: Build a Class of structured parameters from the original arguments.
+
+### Story # 2
+
+Users expect a quick response and no external dependencies on external modules.
+
+Solution: Build a functional module for searching and replacing words based in the built-in regular expressions.
+
+### Story # 3
+
+To avoid security risk on external dependencies, users do not want to relay in 3rd party libraries for spacing and aligning the output document.
+
+Solution: Build a functional module for formatting employing the built-in regular expressions, and string functions.
