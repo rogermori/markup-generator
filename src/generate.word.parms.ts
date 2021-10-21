@@ -1,10 +1,5 @@
-import { parseReplaceWords, parseWords } from "../lib/parameter.utils";
-import {
-  WordContract,
-  MarkupStyle,
-  ListOfWords,
-  RawParameters,
-} from "../types";
+import { parseReplaceWords, parseWords } from "./lib/parameter.utils";
+import { WordContract, MarkupStyle, ListOfWords, RawParameters } from "./types";
 
 export const toMapOfReplaceWords = ({
   boldStrings,

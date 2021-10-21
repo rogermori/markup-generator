@@ -1,4 +1,4 @@
-import { ListOfWords, WordContract } from "../../types";
+import { ListOfWords, WordContract } from "../types";
 import {
   createReplacementWord,
   createMapOfReplaceWords,

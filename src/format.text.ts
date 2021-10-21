@@ -1,4 +1,4 @@
-import { AlignParms, FormatTextParms, Spacing, Alignment } from "../types";
+import { AlignParms, FormatTextParms, Alignment } from "./types";
 
 const alignTextRight = ({ text, length, char }: AlignParms) =>
   text.padStart(length, char);
@@ -14,9 +14,7 @@ export const alignText = ({
   alignment,
   char = " ",
 }: AlignParms) =>
-  length <= text.length
-    ? text
-    : alignment === Alignment.left
+  length <= text.length || alignment === Alignment.left
     ? text
     : alignment === Alignment.right
     ? alignTextRight({ text, length, char })
@@ -34,17 +32,4 @@ export const formatParagraph = ({
   text
     .match(cretateLineRegExp(length))
     .map((text) => alignText({ text, length, alignment }))
-    .join(spacing);
-
-export const formatDocument = ({
-  text,
-  length,
-  spacing,
-  alignment,
-}: FormatTextParms) =>
-  text
-    .split(Spacing.single)
-    .map((paragraph) =>
-      formatParagraph({ text: paragraph, length, spacing, alignment })
-    )
     .join(spacing);

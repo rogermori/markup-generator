@@ -1,20 +1,35 @@
+import fs from "fs";
 import inquirer from "inquirer";
 import { promptQuestions } from "./config/prompt";
-import { parseReplaceWords, parseWords } from "./lib/parameter.utils";
 import { fetchChuckNorrisWords } from "./lib/http.request";
 import { parseInputFileByLine } from "./parse/parse.file.by.line";
-import { RawParameters } from "./types";
+import { ProgramOutput, RawParameters } from "./types";
 
-async function main() {
+async function main(): Promise<ProgramOutput> {
   const [rawParameters, chuckNorrisRandomWords] = await Promise.all<
     RawParameters,
     string
   >([inquirer.prompt(promptQuestions), fetchChuckNorrisWords()]);
-  const markupDocument = await parseInputFileByLine(
+  const markupText = await parseInputFileByLine(
     rawParameters,
     chuckNorrisRandomWords
   );
-  return markupDocument;
+  return {
+    markupText,
+    output: rawParameters.output,
+    fileName: rawParameters.fileName,
+  };
 }
 
-main().then((markupDocument) => console.log(markupDocument));
+main().then(({ markupText, output, fileName }) => {
+  output !== "file" && console.log("\n", markupText, "\n");
+  output !== "screen" && generateOutputFile({ markupText, output, fileName });
+});
+
+function generateOutputFile({ markupText, fileName }: ProgramOutput) {
+  const fileNameMD = `${fileName}.md`;
+  fs.writeFile(fileNameMD, markupText as string, (err) => {
+    if (err) return console.error(err);
+    console.log("Generated markup file: ", fileNameMD);
+  });
+}

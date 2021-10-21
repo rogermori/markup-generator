@@ -30,7 +30,7 @@ export enum Alignment {
 }
 
 export interface FormatTextParms {
-  text?: string;
+  text: string;
   length: number;
   spacing: Spacing;
   alignment: Alignment;
@@ -51,5 +51,11 @@ export interface RawParameters {
   italicStrings: string;
   replaceStrings: string;
   chuckNorrisFFS: string;
+  fileName: string;
+  output: string;
+}
+export interface ProgramOutput {
+  markupText: string;
+  output: string;
   fileName: string;
 }

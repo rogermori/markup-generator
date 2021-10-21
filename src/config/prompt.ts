@@ -12,6 +12,13 @@ const validateReplaceWords = (value: string) => {
   return "Enter a valid list of replace words";
 };
 
+const validateFileName = (value: string) => {
+  if (/^.+\.\w+$/g.test(value ?? "")) {
+    return true;
+  }
+  return "File name can contain only letter and numbers";
+};
+
 export const promptQuestions = [
   {
     name: "_lineWidth",
@@ -63,6 +70,14 @@ export const promptQuestions = [
   {
     name: "fileName",
     message: "Input Text File Name:",
-    default: "./data/input.txt",
+    default: `${process.cwd()}/data/choco.txt`,
+    validate: validateFileName,
+  },
+  {
+    name: "output",
+    type: "list",
+    choices: ["screen", "file", "both"],
+    message: "Send output to:",
+    default: "both",
   },
 ];
