@@ -12,34 +12,27 @@ export function parseInputFileByLine(
 ) {
   return new Promise((resolve) => {
     const listOfParagraphs: string[] = [];
-    const mapOfReplaceWords = toMapOfReplaceWords(rawParameters);
-    const chuckNorrisWords = parseWords(rawParameters.chuckNorrisFFS);
-    const length = parseInt(rawParameters._lineWidth);
-    const spacing = parseSpacing(rawParameters._spacing);
-    const alignment = parseAlignment(rawParameters._textAlignment);
-
+    const {
+      readStreamInterface,
+      spacing,
+      formatTextParms,
+      mapOfReplaceWords,
+      chuckNorrisWords,
+    } = parseParameters(rawParameters);
     readline
-      .createInterface({
-        input: fs.createReadStream(rawParameters.fileName),
-        output: process.stdout,
-        terminal: false,
-      })
+      .createInterface(readStreamInterface)
       .on("line", (line) => {
-        if (line) {
-          const replacedLine = replaceWords(line, mapOfReplaceWords);
+        line &&
           listOfParagraphs.push(
-            formatParagraph({ text: replacedLine, alignment, spacing, length })
+            buildParagraph(line, mapOfReplaceWords)(formatTextParms)
           );
-
-          if (matchParagraph(chuckNorrisWords, line)) {
-            const newLine = replaceWords(
+        if (matchParagraph(chuckNorrisWords, line)) {
+          listOfParagraphs.push(
+            buildParagraph(
               chuckNorrisRandomWords,
               mapOfReplaceWords
-            );
-            listOfParagraphs.push(
-              formatParagraph({ text: newLine, alignment, spacing, length })
-            );
-          }
+            )(formatTextParms)
+          );
         }
       })
       .on("close", () => {
@@ -66,4 +59,31 @@ function parseAlignment(alignment: string) {
 
 function parseSpacing(spacing: string) {
   return spacing === "single" ? Spacing.single : Spacing.double;
+}
+
+function buildParagraph(text: string, mapOfWords: Map<string, string>) {
+  return function (formatTextParms: FormatTextParms) {
+    formatTextParms.text = replaceWords(text, mapOfWords);
+    return formatParagraph(formatTextParms);
+  };
+}
+
+function parseParameters(rawParameters: RawParameters) {
+  const spacing = parseSpacing(rawParameters._spacing);
+  return {
+    readStreamInterface: {
+      input: fs.createReadStream(rawParameters.fileName),
+      output: process.stdout,
+      terminal: false,
+    },
+    chuckNorrisWords: parseWords(rawParameters.chuckNorrisFFS),
+    mapOfReplaceWords: toMapOfReplaceWords(rawParameters),
+    spacing,
+    formatTextParms: {
+      length: parseInt(rawParameters._lineWidth),
+      spacing,
+      alignment: parseAlignment(rawParameters._textAlignment),
+      text: "",
+    },
+  };
 }

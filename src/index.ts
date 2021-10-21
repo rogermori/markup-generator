@@ -10,10 +10,6 @@ async function main() {
     RawParameters,
     string
   >([inquirer.prompt(promptQuestions), fetchChuckNorrisWords()]);
-
-  //const listOfReplaceWords = mapToListOfWords(rawParameters);
-  //console.log(JSON.stringify(rawParameters, null, 2));
-  //console.log("Chuck norris words\n", chuckNorrisRandomWords);
   const markupDocument = await parseInputFileByLine(
     rawParameters,
     chuckNorrisRandomWords

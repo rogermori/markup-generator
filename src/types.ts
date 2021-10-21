@@ -30,7 +30,7 @@ export enum Alignment {
 }
 
 export interface FormatTextParms {
-  text: string;
+  text?: string;
   length: number;
   spacing: Spacing;
   alignment: Alignment;
