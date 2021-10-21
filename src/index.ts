@@ -6,17 +6,19 @@ import { parseInputFileByLine } from "./parse/parse.file.by.line";
 import { RawParameters } from "./types";
 
 async function main() {
-  const [rawParameters, chuckNorrisWords] = await Promise.all<
+  const [rawParameters, chuckNorrisRandomWords] = await Promise.all<
     RawParameters,
     string
   >([inquirer.prompt(promptQuestions), fetchChuckNorrisWords()]);
 
   //const listOfReplaceWords = mapToListOfWords(rawParameters);
-  console.log(JSON.stringify(rawParameters, null, 2));
-  console.log("Chuck norris words\n", chuckNorrisWords);
-  const paragraphs = await parseInputFileByLine(rawParameters);
-
-  console.log("file read is\n", paragraphs);
+  //console.log(JSON.stringify(rawParameters, null, 2));
+  //console.log("Chuck norris words\n", chuckNorrisRandomWords);
+  const markupDocument = await parseInputFileByLine(
+    rawParameters,
+    chuckNorrisRandomWords
+  );
+  return markupDocument;
 }
 
-main().then((res) => console.log("zzzz", res));
+main().then((markupDocument) => console.log(markupDocument));
