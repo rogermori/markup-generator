@@ -5,4 +5,6 @@ export const randomWordsAPI = {
 
 export const regularExpressions = {
   word: /\w\w+/gm,
+  leftBoundary: "((?<=^)|(?<=[\\s:\\[\\]\\(\\)\\{\\}\\.\\,\\?\\+\\*\\^\\+]))",
+  rightBoundary: "(?=[\\s$:%\\[\\]\\(\\)\\{\\}\\.\\,\\?\\+\\*\\^\\+\\$])",
 };

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { formatParagraph } from "../format.text";
+import { formatParagraph } from "../format/format.text";
 import { parseWords } from "../lib/parameter.utils";
 import { toMapOfReplaceWords } from "../generate.word.parms";
 import { replaceWords } from "../search.replace.words";

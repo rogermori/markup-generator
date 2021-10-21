@@ -1,7 +1,7 @@
 import { AlignParms, FormatTextParms, Alignment } from "./types";
 
 const alignTextRight = ({ text, length, char }: AlignParms) =>
-  text.padStart(length, char);
+  text.trim().padStart(length, char);
 
 const alignTextCenter = ({ text, length, char }: AlignParms) => {
   const paddLeft = Math.floor((length - text.length) / 2);
@@ -15,10 +15,10 @@ export const alignText = ({
   char = " ",
 }: AlignParms) =>
   length <= text.length || alignment === Alignment.left
-    ? text
+    ? text.trim()
     : alignment === Alignment.right
     ? alignTextRight({ text, length, char })
-    : alignTextCenter({ text, length, char });
+    : alignTextCenter({ text: text.trim(), length, char });
 
 const cretateLineRegExp = (length: number) =>
   new RegExp(`.{1,${length - 1}}\\S( |$)`, "g");

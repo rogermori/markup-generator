@@ -18,16 +18,22 @@ async function main(): Promise<ProgramOutput> {
     markupText,
     output: rawParameters.output,
     fileName: rawParameters.fileName,
+    alignment: rawParameters._textAlignment,
   };
 }
 
-main().then(({ markupText, output, fileName }) => {
+main().then(({ markupText, output, fileName, alignment }) => {
   output !== "file" && console.log("\n", markupText, "\n");
-  output !== "screen" && generateOutputFile({ markupText, output, fileName });
+  output !== "screen" &&
+    generateOutputFile({ markupText, output, fileName, alignment });
 });
 
-function generateOutputFile({ markupText, fileName }: ProgramOutput) {
-  const fileNameMD = `${fileName}.md`;
+function generateOutputFile({
+  markupText,
+  fileName,
+  alignment,
+}: ProgramOutput) {
+  const fileNameMD = `${fileName}.${alignment}.md`;
   fs.writeFile(fileNameMD, markupText as string, (err) => {
     if (err) return console.error(err);
     console.log("Generated markup file: ", fileNameMD);

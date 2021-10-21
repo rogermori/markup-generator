@@ -1,7 +1,12 @@
 import { parseWords } from "./lib/parameter.utils";
+import { regularExpressions } from "./config/index";
+const { leftBoundary, rightBoundary } = regularExpressions;
+
+const toWordStrRegExp = (word: string) =>
+  `(${leftBoundary}${word}${rightBoundary})`;
 
 const generateRegExp = (mapOfWords: Map<string, string>) =>
-  [...mapOfWords.keys()].map((word) => `\\b${word}\\b`).join("|");
+  [...mapOfWords.keys()].map((word) => toWordStrRegExp(word)).join("|");
 
 export function replaceWords(text: string, mapOfWords: Map<string, string>) {
   const regExp = new RegExp(generateRegExp(mapOfWords), "g");

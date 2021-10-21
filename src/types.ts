@@ -58,4 +58,5 @@ export interface ProgramOutput {
   markupText: string;
   output: string;
   fileName: string;
+  alignment: string;
 }
