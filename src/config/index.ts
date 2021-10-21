@@ -1,9 +1,8 @@
-export const config = {
-  randomWordsAPI: {
-    host: "api.chucknorris.io",
-    path: "/jokes/random",
-  },
-  regularExpressions: {
-    word: /\w\w+/gm,
-  },
+export const randomWordsAPI = {
+  host: "api.chucknorris.io",
+  path: "/jokes/random",
+};
+
+export const regularExpressions = {
+  word: /\w\w+/gm,
 };

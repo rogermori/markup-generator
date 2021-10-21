@@ -1,7 +1,7 @@
 import { ListOfWords, WordContract } from "../../types";
 import {
   createReplacementWord,
-  createMapOfWords,
+  createMapOfReplaceWords,
 } from "../generate.word.parms";
 describe("Paremeters", () => {
   describe("createReplacementWord", () => {
@@ -77,7 +77,7 @@ describe("Paremeters", () => {
           { text: "sustainable", replaceWith: "SUSTAINABLE" },
         ],
       };
-      const result = createMapOfWords(listOfWords);
+      const result = createMapOfReplaceWords(listOfWords);
 
       const expectedKeys = ["Choco", "Chuck", "Norris", "food", "sustainable"];
       const keys = [...result.keys()];

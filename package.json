@@ -8,6 +8,7 @@
     "testwatch": "jest --watch",
     "build": "tsc",
     "prod": "node dist/index",
+    "start:dev": "tsc-watch --project tsconfig.json",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
@@ -26,9 +27,11 @@
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
+    "tsc-watch": "^4.5.0",
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "inquirer": "^8.2.0"
+    "inquirer": "^8.2.0",
+    "stdio": "^2.1.1"
   }
 }

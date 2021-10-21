@@ -42,3 +42,14 @@ export interface AlignParms {
   alignment?: Alignment;
   char?: string;
 }
+
+export interface RawParameters {
+  _lineWidth: string;
+  _textAlignment: string;
+  _spacing: string;
+  boldStrings: string;
+  italicStrings: string;
+  replaceStrings: string;
+  chuckNorrisFFS: string;
+  fileName: string;
+}

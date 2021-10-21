@@ -1,4 +1,21 @@
-import { WordContract, MarkupStyle, ListOfWords } from "../types";
+import { parseReplaceWords, parseWords } from "../lib/parameter.utils";
+import {
+  WordContract,
+  MarkupStyle,
+  ListOfWords,
+  RawParameters,
+} from "../types";
+
+export const toMapOfReplaceWords = ({
+  boldStrings,
+  italicStrings,
+  replaceStrings,
+}: Partial<RawParameters>): Map<string, string> =>
+  createMapOfReplaceWords({
+    boldWords: parseWords(boldStrings),
+    italicWords: parseWords(italicStrings),
+    replaceWords: parseReplaceWords(replaceStrings),
+  });
 
 export function createReplacementWord({
   bold,
@@ -11,11 +28,11 @@ export function createReplacementWord({
   return `${markupStyle}${replaceWith ?? text}${markupStyle}`;
 }
 
-export function createMapOfWords({
+export function createMapOfReplaceWords({
   boldWords,
   italicWords,
   replaceWords,
-}: ListOfWords) {
+}: ListOfWords): Map<string, string> {
   const setOfBoldWords = _createSet(boldWords);
   const setOfItalicWords = _createSet(italicWords);
   const mapOfReplaceWords = (replaceWords ?? []).reduce(

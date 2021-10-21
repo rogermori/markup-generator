@@ -1,16 +1,16 @@
 import https from "https";
-import { config } from "../config/index";
+import { randomWordsAPI } from "../config/index";
 
-export function httpGet() {
+export function fetchChuckNorrisWords(): Promise<string> {
   return new Promise((resolve, reject) => {
     https
-      .get(config.randomWordsAPI, (res) => {
+      .get(randomWordsAPI, (res) => {
         let responseString = "";
         res.on("data", (data: string) => {
           responseString += data;
         });
         res.on("end", () => {
-          resolve(JSON.parse(responseString));
+          resolve(JSON.parse(responseString)["value"]);
         });
       })
       .on("error", (err) => {
