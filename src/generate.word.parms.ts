@@ -7,9 +7,9 @@ export const toMapOfReplaceWords = ({
   replaceStrings,
 }: Partial<RawParameters>): Map<string, string> =>
   createMapOfReplaceWords({
-    boldWords: parseWords(boldStrings),
-    italicWords: parseWords(italicStrings),
-    replaceWords: parseReplaceWords(replaceStrings),
+    boldWords: parseWords(boldStrings.trim()),
+    italicWords: parseWords(italicStrings.trim()),
+    replaceWords: parseReplaceWords(replaceStrings.trim()),
   });
 
 export function createReplacementWord({

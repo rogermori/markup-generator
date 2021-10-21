@@ -1,11 +1,12 @@
 import fs from "fs";
 import inquirer from "inquirer";
-import { promptQuestions } from "./config/prompt";
+import { promptQuestions, welcomeMessage } from "./config/prompt";
 import { fetchChuckNorrisWords } from "./lib/http.request";
 import { parseInputFileByLine } from "./parse/parse.file.by.line";
 import { ProgramOutput, RawParameters } from "./types";
 
 async function main(): Promise<ProgramOutput> {
+  process.stdout.write(welcomeMessage);
   const [rawParameters, chuckNorrisRandomWords] = await Promise.all<
     RawParameters,
     string
@@ -17,7 +18,7 @@ async function main(): Promise<ProgramOutput> {
   return {
     markupText,
     output: rawParameters.output,
-    fileName: rawParameters.fileName,
+    fileName: rawParameters.fileName.trim(),
     alignment: rawParameters._textAlignment,
   };
 }

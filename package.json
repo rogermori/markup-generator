@@ -4,15 +4,11 @@
   "description": "Roger Mori's Choco backend exercise",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "testwatch": "jest --watch",
     "build": "tsc",
-    "prod": "node dist/index",
-    "start:dev": "tsc-watch --project tsconfig.json",
-    "format:check": "prettier --check .",
-    "format:write": "prettier --write .",
-    "lint:check": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "start": "npm run build && node dist/index",
+    "dev": "tsc-watch --project tsconfig.json",
+    "test": "jest",
+    "testwatch": "jest --watch"
   },
   "keywords": [],
   "author": "Roger Mori",

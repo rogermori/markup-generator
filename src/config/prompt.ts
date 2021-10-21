@@ -2,7 +2,8 @@ import inquirer from "inquirer";
 import { regularExpressions } from "./index";
 
 const validateWords = (value: string) => {
-  if ((value ?? "").match(regularExpressions.word)) return true;
+  if (((value ?? "").match(regularExpressions.word) ?? []).length > 0)
+    return true;
   return "Enter a list of words";
 };
 
@@ -32,7 +33,7 @@ export const promptQuestions = [
   },
   {
     name: "_textAlignment",
-    message: "Text Alignment :",
+    message: "Text Alignment ?",
     type: "list",
     choices: ["left", "right", "center"],
   },
@@ -45,39 +46,48 @@ export const promptQuestions = [
   },
   {
     name: "boldStrings",
-    message: "Bold Strings:",
+    message: "Bold Strings ?",
     validate: validateWords,
-    default: '"Choco", "Chuck", "Norris"',
+    default: "Choco, Chuck, Norris",
   },
   {
     name: "italicStrings",
-    message: "Italic Strings:",
+    message: "Italic Strings ?",
     validate: validateWords,
-    default: '"food"',
+    default: "food",
   },
   {
     name: "replaceStrings",
-    message: "Replace Strings:",
-    default: '("Choco", "CHOCO"), ("sustainable", "SUSTAINABLE")',
+    message: "Replace Strings ?",
+    default: "(Choco, CHOCO), (sustainable, SUSTAINABLE)",
     validate: validateReplaceWords,
   },
   {
     name: "chuckNorrisFFS",
-    message: "Chuck Norris food fact strings:",
+    message: "Chuck Norris food fact strings ?",
     validate: validateWords,
-    default: '"industry", "change"',
+    default: "industry, change",
   },
   {
     name: "fileName",
-    message: "Input Text File Name:",
+    message: "Input Text File Name ?",
     default: `${process.cwd()}/data/choco.txt`,
     validate: validateFileName,
   },
   {
-    name: "output",
+    name: "output ?",
     type: "list",
     choices: ["screen", "file", "both"],
     message: "Send output to:",
     default: "both",
   },
 ];
+
+export const welcomeMessage = `
+Welcome to Markup Chocorian
+===========================
+
+Please answer the below questions.
+Quotes, commas and parents are optional.
+
+`;

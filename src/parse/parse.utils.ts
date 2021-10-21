@@ -1,5 +1,5 @@
 import fs from "fs";
-import { formatParagraph } from "../format/format.text";
+import { formatParagraph } from "../format.text";
 import { parseWords } from "../lib/parameter.utils";
 import { toMapOfReplaceWords } from "../generate.word.parms";
 import { replaceWords } from "../search.replace.words";
@@ -35,7 +35,7 @@ export function parseParameters(rawParameters: RawParameters) {
       output: process.stdout,
       terminal: false,
     },
-    chuckNorrisWords: parseWords(rawParameters.chuckNorrisFFS),
+    chuckNorrisWords: parseWords(rawParameters.chuckNorrisFFS.trim()),
     mapOfReplaceWords: toMapOfReplaceWords(rawParameters),
     spacing,
     formatTextParms: {
