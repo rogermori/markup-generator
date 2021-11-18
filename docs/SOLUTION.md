@@ -1,8 +1,4 @@
-# Roger Mori's Solution made with Love
-
-## Dictionary
-
-- Requirement "Strings" in parameters mean design "Words"
+# Solution
 
 ## Added Non functional Requirements
 
@@ -62,7 +58,7 @@ The system outputs to "screen" or "file" or "both."
 ### Installation
 
 ```
- 1. https://github.com/choco-hire/Roger-backend-exercise
+ 1. https://github.com/rogermori/markup-generator
  2. npm install
 ```
 
